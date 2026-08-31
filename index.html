@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michele Ferdinando — Médica Veterinária</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --navy:#16233B;
+    --navy-2:#0F1A2C;
+    --cream:#F6F3EC;
+    --cream-2:#EEE8D9;
+    --jade:#3F9C82;
+    --jade-soft:#D8E9E2;
+    --coral:#D9724B;
+    --ink:#1B2430;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    color:var(--navy);
+    font-weight:600;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- header ---------- */
+  header{padding:22px 0;}
+  .brandbar{display:flex;align-items:center;justify-content:space-between;}
+  .brandmark{display:flex;align-items:center;gap:10px;}
+  .brandmark img{height:52px;width:auto;}
+  .brandmark span{font-family:'Fraunces', serif;font-weight:600;font-size:1.02rem;color:var(--navy);}
+  header nav a{text-decoration:none;font-size:.95rem;color:var(--navy);margin-left:26px;}
+  header nav a:hover{color:var(--jade);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:36px 0 70px;}
+  .hero-inner{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  .hero-copy .eyebrow{font-size:.98rem;color:var(--jade);font-weight:500;margin-bottom:14px;}
+  .hero-copy h1{font-size:clamp(2.3rem, 4vw, 3.4rem);line-height:1.1;letter-spacing:-0.01em;}
+  .hero-copy .lede{margin-top:22px;max-width:46ch;font-size:1.1rem;}
+  .crmv-tag{display:inline-block;margin-top:20px;padding:6px 14px;border:1px solid var(--navy);border-radius:100px;font-size:.86rem;color:var(--navy);}
+  .cta-row{margin-top:32px;display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{display:inline-block;padding:14px 26px;border-radius:10px;text-decoration:none;font-weight:500;font-size:1rem;border:none;cursor:pointer;}
+  .btn-primary{background:var(--navy);color:var(--cream);}
+  .btn-primary:hover{background:var(--navy-2);}
+  .btn-ghost{border:1px solid var(--navy);color:var(--navy);background:transparent;}
+  .btn-ghost:hover{background:var(--navy);color:var(--cream);}
+
+  .hero-photo{position:relative;justify-self:center;}
+  .hero-photo .frame{width:320px;height:320px;border-radius:50%;overflow:hidden;border:6px solid var(--cream-2);box-shadow:0 18px 40px rgba(22,35,59,.2);}
+  .hero-photo .frame img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo .ring{position:absolute;inset:-16px;border:1.5px dashed var(--jade);border-radius:50%;z-index:-1;}
+
+  /* ---------- services ---------- */
+  .services{background:var(--navy);color:var(--cream);padding:70px 0 78px;}
+  .services h2{color:var(--cream);font-size:2rem;max-width:22ch;}
+  .services .sub{color:var(--jade-soft);max-width:52ch;margin-top:14px;font-size:1.02rem;}
+  .service-grid{margin-top:44px;display:grid;grid-template-columns:repeat(3, 1fr);gap:1px;background:rgba(246,243,236,.16);border-radius:14px;overflow:hidden;}
+  .service{background:var(--navy);padding:28px 24px;cursor:default;transition:background .25s ease;}
+  .service:hover{background:var(--navy-2);}
+  .service h3{color:var(--cream);font-size:1.06rem;font-weight:500;font-family:'Work Sans', sans-serif;}
+  .service p{
+    margin:10px 0 0;font-size:.93rem;color:var(--jade-soft);line-height:1.55;
+    max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease, opacity .35s ease, margin .35s ease;
+  }
+  .service:hover p{max-height:120px;opacity:1;}
+  .service .mark{width:24px;height:24px;color:var(--jade);margin-bottom:12px;}
+
+  /* ---------- planner interativo ---------- */
+  .planner{padding:80px 0;}
+  .planner-head{max-width:56ch;}
+  .planner-head h2{font-size:2rem;}
+  .planner-head p{margin-top:14px;font-size:1.05rem;}
+
+  .planner-box{
+    margin-top:44px;
+    border:1px solid rgba(22,35,59,.16);
+    border-radius:18px;
+    background:#fff;
+    padding:8px;
+  }
+  .steps-nav{display:flex;gap:6px;padding:14px 18px 0;}
+  .steps-nav .dot{flex:1;height:4px;border-radius:4px;background:rgba(22,35,59,.14);}
+  .steps-nav .dot.active{background:var(--jade);}
+
+  .step{display:none;padding:34px 30px 30px;}
+  .step.active{display:block;}
+  .step .qlabel{font-size:.88rem;color:var(--jade);font-weight:500;margin-bottom:8px;}
+  .step h3{font-size:1.4rem;max-width:22ch;}
+
+  .opt-grid{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit, minmax(170px,1fr));gap:12px;}
+  .opt{
+    border:1.5px solid rgba(22,35,59,.18);
+    border-radius:12px;
+    padding:16px;
+    cursor:pointer;
+    text-align:left;
+    background:transparent;
+    transition:border-color .2s ease, background .2s ease;
+    font-size:.98rem;
+    color:var(--ink);
+  }
+  .opt:hover{border-color:var(--jade);}
+  .opt.selected{border-color:var(--navy);background:var(--jade-soft);}
+  .opt .oico{font-size:1.5rem;display:block;margin-bottom:8px;}
+
+  .step-actions{margin-top:28px;display:flex;justify-content:space-between;align-items:center;}
+  .step-back{background:none;border:none;color:var(--navy);font-size:.95rem;cursor:pointer;opacity:.7;}
+  .step-back:hover{opacity:1;}
+  .step-back:disabled{visibility:hidden;}
+
+  .summary-card{
+    background:var(--cream-2);
+    border-radius:14px;
+    padding:24px 26px;
+    margin-top:10px;
+  }
+  .summary-card .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(22,35,59,.1);font-size:.98rem;}
+  .summary-card .row:last-child{border-bottom:none;}
+  .summary-card .row strong{color:var(--navy);}
+
+  /* ---------- sobre ---------- */
+  .about{padding:10px 0 80px;}
+  .about-inner{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:start;padding-left:24px;}
+  .about-photo{position:relative;}
+  .about-photo img{
+    width:100%;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border-radius:18px;
+    box-shadow:0 18px 40px rgba(22,35,59,.18);
+  }
+  .about-photo .edu-tag{
+    position:absolute;
+    left:-24px;
+    bottom:-24px;
+    background:var(--cream);
+    border:1.5px solid var(--navy);
+    border-radius:14px;
+    padding:18px 22px;
+    max-width:230px;
+    box-shadow:0 10px 26px rgba(22,35,59,.14);
+  }
+  .about-photo .edu-tag .num{font-family:'Fraunces', serif;font-size:1.15rem;color:var(--navy);}
+  .about-photo .edu-tag .label{margin-top:6px;font-size:.85rem;color:var(--ink);line-height:1.4;}
+  .about-copy h2{font-size:1.85rem;max-width:16ch;}
+  .about-copy blockquote{margin:22px 0 0;padding-left:20px;border-left:3px solid var(--jade);font-family:'Fraunces', serif;font-size:1.22rem;font-style:italic;color:var(--navy);max-width:50ch;}
+
+  /* ---------- contato ---------- */
+  .contact{background:var(--cream-2);padding:78px 0 88px;}
+  .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .contact h2{font-size:2rem;max-width:14ch;}
+  .contact .lede{margin-top:16px;max-width:44ch;font-size:1.03rem;}
+  .contact-card{background:var(--cream);border-radius:16px;padding:32px;border:1px solid rgba(22,35,59,.14);}
+  .contact-line{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(22,35,59,.1);text-decoration:none;color:var(--ink);}
+  .contact-line:last-child{border-bottom:none;}
+  .contact-line .ic{width:22px;height:22px;color:var(--navy);flex-shrink:0;}
+  .contact-line .txt strong{display:block;font-size:.82rem;color:var(--navy);font-weight:500;}
+  .contact-line .txt span{font-size:1.01rem;}
+
+  footer{padding:32px 0;text-align:center;font-size:.87rem;color:var(--navy);}
+
+  .float-whats{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#25D366;
+    color:#fff;
+    padding:14px 20px;
+    border-radius:100px;
+    text-decoration:none;
+    font-size:.96rem;
+    font-weight:500;
+    box-shadow:0 10px 24px rgba(0,0,0,.22);
+    z-index:50;
+    transition:transform .2s ease;
+  }
+  .float-whats:hover{transform:translateY(-2px);}
+  .float-whats svg{width:22px;height:22px;flex-shrink:0;}
+  .float-whats .label{white-space:nowrap;}
+
+  @media (max-width:640px){
+    .float-whats .label{display:none;}
+    .float-whats{padding:14px;}
+  }
+
+  @media (max-width:820px){
+    .hero-inner{grid-template-columns:1fr;gap:36px;}
+    .hero-photo{order:-1;}
+    .hero-photo .frame{width:210px;height:210px;}
+    .service-grid{grid-template-columns:1fr;}
+    .about-inner{grid-template-columns:1fr;gap:44px;padding-left:0;}
+    .about-photo .edu-tag{left:16px;right:16px;bottom:-20px;max-width:none;}
+    .contact-inner{grid-template-columns:1fr;}
+    header nav{display:none;}
+    .opt-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap brandbar">
+    <div class="brandmark">
+      <img src="assets/logo-mf.png" alt="Logo MF">
+      <span>Michele Ferdinando</span>
+    </div>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#agendar">Agendar</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">Médica veterinária em Araraquara</div>
+      <h1>Cuidado, acolhimento e segurança para o seu pet, em casa</h1>
+      <p class="lede">Consultas, exames e vacinas no conforto do lar — sem o estresse do deslocamento, com o mesmo carinho de sempre.</p>
+      <div class="crmv-tag">CRMV/SP 45091</div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#agendar">Montar minha visita</a>
+        <a class="btn btn-ghost" href="https://wa.me/5516996125556?text=Ol%C3%A1%2C%20Michele%21%20Gostaria%20de%20agendar%20uma%20consulta%20para%20o%20meu%20pet." target="_blank" rel="noopener">Chamar direto no WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="ring"></div>
+      <div class="frame"><img src="assets/michele-foto.png" alt="Dra. Michele Ferdinando"></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicos">
+  <div class="wrap">
+    <h2>O que cabe numa visita em casa</h2>
+    <p class="sub">Passe o mouse (ou toque) em cada serviço para entender o que está incluído.</p>
+    <div class="service-grid">
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.3 4 2.5C10.5 5.3 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9-1.4 0-2 0-2 0"/></svg>
+        <h3>Consultas a domicílio</h3>
+        <p>Atendimento clínico completo em Araraquara, no ambiente do seu pet.</p>
+      </div>
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3v4M15 3v4M4 7h16M5 7v13a1 1 0 001 1h12a1 1 0 001-1V7"/><path d="M9 12h6M9 16h4"/></svg>
+        <h3>Exames</h3>
+        <p>Coleta e avaliação para acompanhar a saúde do animal com precisão.</p>
+      </div>
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 3l3 3-9 9-4 1 1-4 9-9z"/><path d="M14 7l3 3"/></svg>
+        <h3>Aplicação de medicamentos</h3>
+        <p>Tratamentos aplicados com cuidado, sem o estresse do transporte.</p>
+      </div>
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12a3 3 0 106 0 3 3 0 00-6 0z"/><path d="M12 3v2M12 19v2M21 12h-2M5 12H3M18.4 5.6l-1.4 1.4M7 17l-1.4 1.4M18.4 18.4L17 17M7 7L5.6 5.6"/></svg>
+        <h3>Vacinas</h3>
+        <p>Calendário vacinal em dia, aplicado com tranquilidade em casa.</p>
+      </div>
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4.5 12.5l4-4a2 2 0 012.8 0l1.4 1.4a2 2 0 002.8 0l4-4M4.5 12.5V19a1 1 0 001 1h13a1 1 0 001-1v-6.5"/></svg>
+        <h3>Cães e gatos</h3>
+        <p>Cuidado dedicado, adaptado à espécie e ao temperamento de cada um.</p>
+      </div>
+      <div class="service">
+        <svg class="mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.5-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.3 4 2.5C10.5 5.3 12 4 14 4c4 0 5.5 4 3.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <h3>Manejo pet friendly</h3>
+        <p>Técnicas que respeitam o ritmo e o bem-estar emocional do animal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="planner" id="agendar">
+  <div class="wrap">
+    <div class="planner-head">
+      <h2>Monte sua visita em 3 passos</h2>
+      <p>Responda rapidinho e eu já preparo uma mensagem de WhatsApp pronta pra Dra. Michele, com tudo o que ela precisa saber.</p>
+    </div>
+
+    <div class="planner-box">
+      <div class="steps-nav">
+        <div class="dot active" data-dot="1"></div>
+        <div class="dot" data-dot="2"></div>
+        <div class="dot" data-dot="3"></div>
+      </div>
+
+      <div class="step active" data-step="1">
+        <div class="qlabel">Passo 1 de 3</div>
+        <h3>Quem vai receber a visita?</h3>
+        <div class="opt-grid" data-group="pet">
+          <button class="opt" data-value="Cachorro"><span class="oico">🐶</span>Cachorro</button>
+          <button class="opt" data-value="Gato"><span class="oico">🐱</span>Gato</button>
+          <button class="opt" data-value="Cachorro e gato"><span class="oico">🐾</span>Cachorro e gato</button>
+        </div>
+        <div class="step-actions">
+          <button class="step-back" disabled>Voltar</button>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="step" data-step="2">
+        <div class="qlabel">Passo 2 de 3</div>
+        <h3>Qual é o motivo da visita?</h3>
+        <div class="opt-grid" data-group="motivo">
+          <button class="opt" data-value="Consulta de rotina"><span class="oico">🩺</span>Consulta de rotina</button>
+          <button class="opt" data-value="Vacina"><span class="oico">💉</span>Vacina</button>
+          <button class="opt" data-value="Exame"><span class="oico">🧪</span>Exame</button>
+          <button class="opt" data-value="Aplicação de medicamento"><span class="oico">💊</span>Aplicação de medicamento</button>
+        </div>
+        <div class="step-actions">
+          <button class="step-back">Voltar</button>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="step" data-step="3">
+        <div class="qlabel">Passo 3 de 3</div>
+        <h3>Quando funciona melhor pra você?</h3>
+        <div class="opt-grid" data-group="periodo">
+          <button class="opt" data-value="Manhã"><span class="oico">🌅</span>Manhã</button>
+          <button class="opt" data-value="Tarde"><span class="oico">☀️</span>Tarde</button>
+          <button class="opt" data-value="Noite"><span class="oico">🌙</span>Noite</button>
+        </div>
+
+        <div class="summary-card" id="summary" style="display:none;">
+          <div class="row"><span>Pet</span><strong id="sum-pet">—</strong></div>
+          <div class="row"><span>Motivo</span><strong id="sum-motivo">—</strong></div>
+          <div class="row"><span>Período</span><strong id="sum-periodo">—</strong></div>
+        </div>
+
+        <div class="step-actions">
+          <button class="step-back">Voltar</button>
+          <a class="btn btn-primary" id="send-whats" href="#" target="_blank" rel="noopener" style="opacity:.4;pointer-events:none;">Enviar pro WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap about-inner">
+    <div class="about-photo">
+      <img src="assets/michele-foto.png" alt="Dra. Michele Ferdinando">
+      <div class="edu-tag">
+        <div class="num">CRMV/SP 45091</div>
+        <div class="label">Formada pelo Centro Universitário Barão de Mauá</div>
+      </div>
+    </div>
+    <div class="about-copy">
+      <h2>Prazer, eu sou a Dra. Michele</h2>
+      <blockquote>"Médica veterinária com atendimento domiciliar, oferecendo cuidado, acolhimento e segurança para o seu pet no conforto do lar. Será um prazer cuidar do seu melhor amigo."</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap contact-inner">
+    <div>
+      <h2>Vamos marcar uma visita</h2>
+      <p class="lede">Use o passo a passo acima ou chame direto no WhatsApp pra verificar horário e disponibilidade em Araraquara.</p>
+    </div>
+    <div class="contact-card">
+      <a class="contact-line" href="https://wa.me/5516996125556?text=Ol%C3%A1%2C%20Michele%21%20Gostaria%20de%20agendar%20uma%20consulta%20para%20o%20meu%20pet." target="_blank" rel="noopener">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
+        <span class="txt"><strong>WhatsApp</strong><span>(16) 99612-5556</span></span>
+      </a>
+      <a class="contact-line" href="https://instagram.com/micheleferdinando.vet" target="_blank" rel="noopener">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        <span class="txt"><strong>Instagram</strong><span>@micheleferdinando.vet</span></span>
+      </a>
+      <div class="contact-line">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-7.5-7-12a7 7 0 0114 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span class="txt"><strong>Atendimento</strong><span>Araraquara/SP e região</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Michele Ferdinando · Médica Veterinária · CRMV/SP 45091</div></footer>
+
+<a class="float-whats" href="https://wa.me/5516996125556?text=Ol%C3%A1%2C%20Michele%21%20Gostaria%20de%20agendar%20uma%20consulta%20para%20o%20meu%20pet." target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5.1-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8.9-.2.2-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.4 3.8 3.4.5.2.9.4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+  <span class="label">Chamar no WhatsApp</span>
+</a>
+
+<script>
+  const state = { pet:null, motivo:null, periodo:null };
+  const steps = document.querySelectorAll('.step');
+  const dots = document.querySelectorAll('.dot');
+
+  function goTo(n){
+    steps.forEach(s => s.classList.toggle('active', s.dataset.step == n));
+    dots.forEach(d => d.classList.toggle('active', d.dataset.dot <= n));
+  }
+
+  document.querySelectorAll('.opt-grid').forEach(grid => {
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('.opt');
+      if(!btn) return;
+      grid.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      const group = grid.dataset.group;
+      state[group] = btn.dataset.value;
+
+      if(group === 'pet'){ setTimeout(() => goTo(2), 220); }
+      if(group === 'motivo'){ setTimeout(() => goTo(3), 220); }
+      if(group === 'periodo'){ updateSummary(); }
+    });
+  });
+
+  document.querySelectorAll('.step-back').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const current = Number(btn.closest('.step').dataset.step);
+      if(current > 1) goTo(current - 1);
+    });
+  });
+
+  function updateSummary(){
+    document.getElementById('summary').style.display = 'block';
+    document.getElementById('sum-pet').textContent = state.pet || '—';
+    document.getElementById('sum-motivo').textContent = state.motivo || '—';
+    document.getElementById('sum-periodo').textContent = state.periodo || '—';
+
+    const link = document.getElementById('send-whats');
+    if(state.pet && state.motivo && state.periodo){
+      const msg = `Olá, Dra. Michele! Gostaria de agendar uma visita.%0APet: ${state.pet}%0AMotivo: ${state.motivo}%0APeríodo preferido: ${state.periodo}`;
+      link.href = `https://wa.me/5516996125556?text=${msg}`;
+      link.style.opacity = 1;
+      link.style.pointerEvents = 'auto';
+    }
+  }
+</script>
+
+</body>
+</html>
