@@ -22,7 +22,11 @@
   html{scroll-behavior:smooth;}
   body{
     margin:0;
-    background:var(--cream);
+    background-color:var(--cream);
+    background-image:url('logo-mf-watermark.png');
+    background-repeat:repeat;
+    background-size:240px auto;
+    background-attachment:fixed;
     color:var(--ink);
     font-family:'Work Sans', sans-serif;
     font-size:17px;
@@ -138,11 +142,11 @@
 
   /* ---------- sobre ---------- */
   .about{padding:10px 0 80px;}
-  .about-inner{display:grid;grid-template-columns:0.85fr 1.15fr;gap:60px;align-items:start;padding-left:24px;}
+  .about-inner{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:start;padding-left:24px;}
   .about-photo{position:relative;}
   .about-photo img{
     width:100%;
-    aspect-ratio:4/5;
+    aspect-ratio:1/1;
     object-fit:cover;
     border-radius:18px;
     box-shadow:0 18px 40px rgba(22,35,59,.18);
@@ -362,7 +366,7 @@
 <section class="about" id="sobre">
   <div class="wrap about-inner">
     <div class="about-photo">
-      <img src="foto-michele.png" alt="Dra. Michele Ferdinando">
+      <img src="foto-michele-sobre.png" alt="Dra. Michele Ferdinando">
       <div class="edu-tag">
         <div class="num">CRMV/SP 45091</div>
         <div class="label">Formada pelo Centro Universitário Barão de Mauá</div>
